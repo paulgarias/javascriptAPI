@@ -101,15 +101,62 @@ class MetaDataWFREQ(Resource):
 		Base.prepare(engine,reflect=True)
 		SamplesMeta = Base.classes['samples_metadata']
 		session = Session(bind=engine)
-		sample_metadata = session.query(SamplesMeta).filter(SamplesMeta.SAMPLEID==sampleID[3:])
 		try:
+			sample_metadata = session.query(SamplesMeta).filter(SamplesMeta.SAMPLEID==sampleID[3:])
 			sm, = sample_metadata.all()
 			return sm.WFREQ
 		except:
 			return ""
 
+class OtuSampleValues(Resource):
+	def get(self,sampleID):
+		"""OTU IDs and Sample Values for a given sample.
+		Sort your Pandas DataFrame (OTU ID and Sample Value)
+		in Descending Order by Sample Value
+		Return a list of dictionaries containing sorted lists  for `otu_ids`
+		and `sample_values`
+		[
+			{
+				otu_ids: [
+					1166,
+					2858,
+					481,
+					...
+				],
+				sample_values: [
+					163,
+					126,
+					113,
+					...
+				]
+			}
+		]
+		"""
+		Base = automap_base()
+		Base.prepare(engine, reflect=True)
+		sampleClass = Base.classes.samples
+		session = Session(bind=engine)
+		try:
+			samples = session.query(sampleClass.otu_id,sampleClass.__dict__[sampleID]) \
+				.filter(sampleClass.__dict__[sampleID]>0) \
+				.order_by(sampleClass.otu_id.desc())
+			otu_ids = [item[0] for item in samples.all()]
+			sample_values = [item[1] for item in samples.all()]
+			returnSample = {
+				"otu_ids":otu_ids,
+				"sample_values":sample_values
+			}
+			return jsonify(returnSample)
+		except:
+			return ""	
+
+
+		
+	
+
 api.add_resource(MetaDataSample,'/metadata/<string:sampleID>')
 api.add_resource(MetaDataWFREQ,'/wfreq/<string:sampleID>')
+api.add_resource(OtuSampleValues,'/sample/<string:sampleID>')
 
 if __name__== "__main__":
 	app.run(debug=True)
