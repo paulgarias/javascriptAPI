@@ -1,0 +1,67 @@
+div #weatherbox {
+	border-style: solid;
+	border-color: #f0f0f0;
+	border-radius: 5px;
+	padding: 5px;
+	margin-bottom: 20px;
+	margin-top:20px;
+	border-width: 2px;
+}
+
+div #factstable td,th {
+	padding: 5px;
+}
+
+.tile.viz {
+    overflow: auto;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.tile.viz figure img{
+    	padding: 15px;
+	width: 100%;
+}
+
+.tile.viz figcaption{
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+div .featuredimage img {
+    width: 100%;
+}
+
+.section {
+    padding: 20px;
+}
+
+@media (min-width: 576px ) {
+  .tile.viz figure,img{
+        width:100%;
+  }
+  .row {
+      position: relative;
+  }
+
+  .bottom-align-text {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+}
+
+@media (min-width: 768px) {
+   .tile.viz figure {
+        width:50%;
+        float:left;
+   }
+}
+
+@media (min-width: 1320px) {
+	div #weatherbox{
+		margin-top:0px;
+	}
+}
