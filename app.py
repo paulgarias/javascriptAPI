@@ -151,12 +151,10 @@ class OtuSampleValues(Resource):
 			return ""	
 
 
-		
-	
 
 api.add_resource(MetaDataSample,'/metadata/<string:sampleID>')
 api.add_resource(MetaDataWFREQ,'/wfreq/<string:sampleID>')
-api.add_resource(OtuSampleValues,'/sample/<string:sampleID>')
+api.add_resource(OtuSampleValues,'/samples/<string:sampleID>')
 
 if __name__== "__main__":
 	app.run(debug=True)

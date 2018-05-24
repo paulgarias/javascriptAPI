@@ -86,7 +86,9 @@ function bubbleChart(otus_ids,sample_vals) {
 			text: otuLabels,
 			mode: 'markers',
 			marker: {
-				size: sample_vals.map(d=>d+10)
+				size: sample_vals.map(d=>d+10),
+				color: sample_vals,
+                    		colorscale: "Earth"
 			}
 		};
 		var data = [trace1];
