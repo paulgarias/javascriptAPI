@@ -7,7 +7,28 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Belly Button Biodiversity</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <!-- <link rel="stylesheet" href="static/style.css"> -->
+<style>
+#selectBox {
+	margin-top: 5px;
+	background-color: #eeeeee;
+	border-radius: 5px;
+}
+
+.metadataheaderbox {
+	margin-top: 5px;
+	border: solid #337ab7 2px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color: #337ab7;
+	color: #ffffff;
+}
+
+.metadatabox {
+	border: solid #337ab7 2px;
+}
+</style>
 
 </head>
 
@@ -18,46 +39,20 @@
   </div>
 
   <div class="container">
-	<h3>Latest Mars News</h3>	
-	<p><b></b></p>
-	<p></p>
-	<div class="col-sm-12 col-lg-8 featuredimage">
-		<img src="" />
+	<div id="selectBox" class="col-sm-12">
+		<p>SELECT Sample: <p>
+		<select id="selDataset" onchange="optionChanged(this.value)">
+		</select>
 	</div>
-	<div class="col-sm-6 col-lg-4">
-		<div id="weatherbox">
-			<p><b>Current Weater on Mars</b></p>
-			<p></p>
-		</div>
-		<div id="factstable">
-		</div>
+	<div class="col-sm-12 metadataheaderbox">
+		<h5> Sample MetaData </h5>	
 	</div>
-  </div>
-  <div class="container">
-  	<hr>
-	<h3> Mars Hemispheres </h3>
-	<div class="col-sm-12 section">
-		<div class="tile viz">
-			<figure>
-				<img src="" />
-				<figcaption> </figcaption>
-			</figure>
-			<figure>
-				<img src="" />
-				<figcaption> </figcaption>
-			</figure>
-			<figure>
-				<img src="" />
-				<figcaption> </figcaption>
-			</figure>
-			<figure>
-				<img src="" />
-				<figcaption> </figcaption>
-			</figure>
-		</div>
-	</div>
+	<div id="mdbox" class="col-sm-12 metadatabox"></div>
+	<div id="pieChart" class="col-sm-12"></div>
+	<div id="scatterChart" class="col-sm-12"></div>
   </div>
 
+  <script src="static/js/bbbdd.js"></script>
 </body>
 
 </html>
