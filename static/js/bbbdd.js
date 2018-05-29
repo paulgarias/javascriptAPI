@@ -1,4 +1,4 @@
-
+var innerWidth = Math.floor(window.innerWidth*0.8);
 
 function populateDropdown() {
 	var selectdd = document.getElementById("selDataset");
@@ -107,7 +107,7 @@ function optionChanged(sampleID) {
             }],
           title: '<b>Belly Button Washing Frequency</b> <br> Scrubs per Week',
           height: 1000,
-          width: 1000,
+          width: innerWidth,
           xaxis: {zeroline:false, showticklabels:false,
                                  showgrid: false, range: [-1, 1]},
           yaxis: {zeroline:false, showticklabels:false,
@@ -138,7 +138,7 @@ function pieChart(otus_ids,sample_vals) {
 		
 		var layout = {
 			height: 400,
-			width: innerWidth
+			width: innerWidth*0.6
 		};
 		
 		Plotly.newPlot("pieChart", data, layout);
