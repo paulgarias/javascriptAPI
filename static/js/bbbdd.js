@@ -17,7 +17,7 @@ function runStart() {
 	var sampleID = "BB_940";
 	//alert("Selected: "+sampleID);
 	//fetch data for the newly selected sample
-	//console.log("http://127.0.0.1:5000/metadata/"+sampleID);
+	//console.log("/metadata/"+sampleID);
 
 	var selectmd = document.getElementById("mdbox");
 	if (selectmd.hasChildNodes()) {
@@ -27,7 +27,7 @@ function runStart() {
 		};
 	};
 
-	Plotly.d3.json("http://127.0.0.1:5000/metadata/"+sampleID, function(error, response) {
+	Plotly.d3.json("/metadata/"+sampleID, function(error, response) {
 		//console.log(response);
 		for (key in response) {
 			var h5md = document.createElement("h5");
@@ -36,7 +36,7 @@ function runStart() {
 		};
 	});
 
-	Plotly.d3.json("http://127.0.0.1:5000/samples/"+sampleID, function(error, response) {
+	Plotly.d3.json("/samples/"+sampleID, function(error, response) {
 		if(error) console.error;
 		console.log(response);
 		var otus_ids = response.otu_ids;
@@ -47,7 +47,7 @@ function runStart() {
 		bubbleChart(otus_ids.slice(0,10), sample_vals.slice(0,10));
 	});
 
-        Plotly.d3.json("http://127.0.0.1:5000/wfreq/"+sampleID, function(error,response) {
+        Plotly.d3.json("/wfreq/"+sampleID, function(error,response) {
         	if(error) console.log(error);
 
         	var level;
@@ -63,7 +63,7 @@ function runStart() {
 function optionChanged(sampleID) {
 	//alert("Selected: "+sampleID);
 	//fetch data for the newly selected sample
-	//console.log("http://127.0.0.1:5000/metadata/"+sampleID);
+	//console.log("/metadata/"+sampleID);
 
 	var selectmd = document.getElementById("mdbox");
 	if (selectmd.hasChildNodes()) {
@@ -73,7 +73,7 @@ function optionChanged(sampleID) {
 		};
 	};
 
-	Plotly.d3.json("http://127.0.0.1:5000/metadata/"+sampleID, function(error, response) {
+	Plotly.d3.json("/metadata/"+sampleID, function(error, response) {
 		//console.log(response);
 		for (key in response) {
 			var h5md = document.createElement("h5");
@@ -82,7 +82,7 @@ function optionChanged(sampleID) {
 		};
 	});
 	
-	Plotly.d3.json("http://127.0.0.1:5000/samples/"+sampleID, function(error, response) {
+	Plotly.d3.json("/samples/"+sampleID, function(error, response) {
 		if(error) console.error;
 		console.log(response);
 		var otus_ids = response.otu_ids;
@@ -93,7 +93,7 @@ function optionChanged(sampleID) {
 		updateBubbleChart(otus_ids.slice(0,10), sample_vals.slice(0,10));
 	});
 	
-        Plotly.d3.json("http://127.0.0.1:5000/wfreq/"+sampleID, function(error,response) {
+        Plotly.d3.json("/wfreq/"+sampleID, function(error,response) {
         	if(error) console.log(error);
 
         	var level;
@@ -108,7 +108,7 @@ function optionChanged(sampleID) {
 };
 
 function pieChart(otus_ids,sample_vals) {
-	Plotly.d3.json("http://127.0.0.1:5000/otu", function(error, response) {
+	Plotly.d3.json("/otu", function(error, response) {
 		var otuLabels=[];
 		for (var i=0; i < otus_ids.length; i++) {
 			otuLabels.push(response[otus_ids[i]]);
@@ -134,7 +134,7 @@ function pieChart(otus_ids,sample_vals) {
 
 function updatePieChart(otus_ids,sample_vals) {
 	var PIE = document.getElementById("pieChart");
-        Plotly.d3.json("http://127.0.0.1:5000/otu", function(error, response) {
+        Plotly.d3.json("/otu", function(error, response) {
                 var otuLabels=[];
                 for (var i=0; i < otus_ids.length; i++) {
                         otuLabels.push(response[otus_ids[i]]);
@@ -148,7 +148,7 @@ function updatePieChart(otus_ids,sample_vals) {
 
 
 function bubbleChart(otus_ids,sample_vals) {
-	Plotly.d3.json("http://127.0.0.1:5000/otu", function(error, response) {
+	Plotly.d3.json("/otu", function(error, response) {
 		var otuLabels=[];
                 for (var i=0; i < otus_ids.length; i++) {
                         otuLabels.push(response[otus_ids[i]]);
@@ -185,7 +185,7 @@ function bubbleChart(otus_ids,sample_vals) {
 
 function updateBubbleChart(otus_ids,sample_vals) {
 	var BUBBLE = document.getElementById("scatterChart");
-	Plotly.d3.json("http://127.0.0.1:5000/otu", function(error, response) {
+	Plotly.d3.json("/otu", function(error, response) {
 		var otuLabels=[];
                 for (var i=0; i < otus_ids.length; i++) {
                         otuLabels.push(response[otus_ids[i]]);
